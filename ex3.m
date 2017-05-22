@@ -17,8 +17,7 @@
 clear ; close all; clc
 
 % Setup the parameters you will use for this part of the exercise
-input_layer_size  = 400;  % 20x20 Input Images of Digits
-
+input_layer_size  = 400;  % 20x20 Input pixel Images of Digits
 
 %============================================================================
 % Loading and Visualizing Data 
@@ -26,15 +25,14 @@ input_layer_size  = 400;  % 20x20 Input Images of Digits
 %  You will be working with a dataset that contains handwritten digits.
 %============================================================================
 % Load Training Data
-fprintf('Loading and Visualizing Data ...\n')
+fprintf('Loading and Visualizing 100 of 5000 random sample Data ...\n')
 
 load('ex3data1.mat'); % training data stored in arrays X, y
 m = size(X, 1);
 
 % Randomly select 100 data points to display
 rand_indices = randperm(m);
-sel = X(rand_indices(1:100), :);
-
+sel = X(rand_indices(1:10), :);
 displayData(sel);
 
 %============================================================================
@@ -53,6 +51,10 @@ lambda = 0.1;
 
 %% ================ Part 3: Predict for One-Vs-All ================
 %  After ...
-pred = predictOneVsAll(all_theta, X);
 
+pred = predictOneVsAll(all_theta, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
+
+% predict random sample data
+pred = predictOneVsAll(all_theta, sel);
+fprintf('\nPredict Sample Data: %f\n', pred);
