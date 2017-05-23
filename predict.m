@@ -24,8 +24,7 @@ p = zeros(size(X, 1), 1);
 
 X = [ones(m, 1) X];
 
-for j=1:m,
-
+for j=1:m
 	%first layer propagation
 	z2 = sigmoid(X(j,:) * Theta1');
 
@@ -33,13 +32,9 @@ for j=1:m,
 	z2 = [1 z2];
 
 	%hidden layer propagation and getting max (candidate)
-	[trash,p(j)] = max(sigmoid(z2 * Theta2'));
+	z3 = sigmoid(z2 * Theta2');
+  [trash,p(j)] = max(z3);
 end;
-
-
-
-
-
 
 % =========================================================================
 
